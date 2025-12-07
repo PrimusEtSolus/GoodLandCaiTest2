@@ -161,20 +161,6 @@ const Dashboard = () => {
                     <span className="text-sm text-gray-500 mt-1">Today</span>
                 </div>
 
-                {/* Metric 2 */}
-                <div className="border border-gray-200 rounded-3xl p-6 flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 h-40">
-                    <div className="flex items-center gap-2 mb-2">
-                        <div className="w-8 h-8 bg-gradient-to-r from-blue-100 to-blue-200 rounded-xl flex items-center justify-center shadow-md">
-                            <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
-                            </svg>
-                        </div>
-                        <span className="text-center font-semibold text-gray-700">Employees On-Site</span>
-                    </div>
-                    <span className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">3</span>
-                    <span className="text-sm text-gray-500 mt-1">Active now</span>
-                </div>
-
                  {/* Notifications / Recent Activity */}
                  <div className="border border-gray-200 rounded-3xl p-6 flex-1 bg-white/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 min-h-[300px] relative overflow-hidden flex flex-col hover:scale-105">
                     <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-gray-50 to-transparent rounded-l-3xl"></div>
