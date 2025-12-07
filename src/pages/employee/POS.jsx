@@ -72,22 +72,37 @@ const POS = () => {
   const change = paymentInput ? parseFloat(paymentInput) - totalAmount : 0;
 
   const handlePlaceOrder = async () => {
-    if (cart.length === 0) return;
+    if (cart.length === 0) {
+      alert('Your cart is empty. Please add items before placing an order.');
+      return;
+    }
+    
+    if (!paymentInput || parseFloat(paymentInput) < totalAmount) {
+      alert('Payment amount is insufficient. Please enter a valid amount.');
+      return;
+    }
     
     try {
         const transactions = await getTransactions();
-        const nextOrderNum = transactions.length + 1;
+        const nextOrderNum = (transactions.length + 1);
         const timeNow = new Date().toLocaleTimeString();
 
         // 1. Construct Transaction Object
         const newTransaction = {
             id: crypto.randomUUID(),
             orderNumber: nextOrderNum,
-            items: cart,
+            items: cart.map(item => ({
+              ...item,
+              menuItem: {
+                ...item.menuItem,
+                totalPrice: item.menuItem.totalPrice || 0,
+                VAT_fee: item.menuItem.VAT_fee || 0
+              }
+            })),
             baseAmount: baseAmount,
             discountType: discountType,
             discountAmount: discountAmount,
-            vatPortion: vatPortion, // This is the VAT amount component
+            vatPortion: vatPortion,
             serviceFee: serviceFee,
             totalAmount: totalAmount,
             cashProvided: parseFloat(paymentInput),
@@ -127,7 +142,7 @@ const POS = () => {
 
     } catch (error) {
         console.error("Error placing order", error);
-        alert("Failed to place order");
+        alert("Failed to place order. Please try again.");
     }
   };
 

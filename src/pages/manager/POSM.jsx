@@ -30,12 +30,13 @@ const POSM = () => {
         alert('Please fill all fields');
         return;
     }
-    if (isNaN(Number(currentItem.basePrice))) {
-        setPriceError('Only numbers allowed');
+    const basePriceStr = String(currentItem.basePrice).trim();
+    if (!basePriceStr || isNaN(Number(basePriceStr)) || Number(basePriceStr) < 0) {
+        setPriceError('Please enter a valid positive number');
         return;
     }
 
-    const basePrice = parseFloat(currentItem.basePrice);
+    const basePrice = parseFloat(basePriceStr);
     const VAT_fee = parseFloat((basePrice * 0.12).toFixed(2));
     const totalPrice = parseFloat((basePrice + VAT_fee).toFixed(2));
 
@@ -55,21 +56,31 @@ const POSM = () => {
         updatedMenu.push({ ...itemToSave, id: crypto.randomUUID() });
     }
 
-    await saveMenu(updatedMenu);
-    setMenu(updatedMenu);
-    setShowAddModal(false);
-    setShowEditModal(false);
-    setCurrentItem({});
-    setPriceError('');
+    try {
+      await saveMenu(updatedMenu);
+      setMenu(updatedMenu);
+      setShowAddModal(false);
+      setShowEditModal(false);
+      setCurrentItem({});
+      setPriceError('');
+    } catch (error) {
+      console.error('Failed to save menu item:', error);
+      alert('Failed to save menu item. Please try again.');
+    }
   };
 
   const handleDelete = async () => {
     if (!currentItem.id) return;
-    const updatedMenu = menu.filter(m => m.id !== currentItem.id);
-    await saveMenu(updatedMenu);
-    setMenu(updatedMenu);
-    setShowDeleteModal(false);
-    setCurrentItem({});
+    try {
+      const updatedMenu = menu.filter(m => m.id !== currentItem.id);
+      await saveMenu(updatedMenu);
+      setMenu(updatedMenu);
+      setShowDeleteModal(false);
+      setCurrentItem({});
+    } catch (error) {
+      console.error('Failed to delete menu item:', error);
+      alert('Failed to delete menu item. Please try again.');
+    }
   };
 
   const openAddModal = () => {
