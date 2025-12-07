@@ -135,7 +135,7 @@ export const generateReceiptPDF = async (transaction, businessInfo) => {
   
   // Left side: Receipt No
   doc.text("Receipt No.:", marginX, currentY);
-  doc.text(String(transaction.orderNumber).padStart(2, '0'), marginX + 1.2, currentY); 
+  doc.text(String(transaction.orderNumber).padStart(4, '0'), marginX + 1.2, currentY); 
   
   // Right side: Time
   const timeLabel = "Time: ";
@@ -150,11 +150,17 @@ export const generateReceiptPDF = async (transaction, businessInfo) => {
   
   currentY += 0.3;
 
+  // Order Type
+  doc.text("Order Type:", marginX, currentY);
+  doc.text(transaction.type || 'Dine In', marginX + 1.2, currentY);
+  currentY += 0.3;
+
   // 5. Items Header
-  // Item Name      Qty      Total
+  // Item Name      Qty      Price      Total
   doc.setFont('courier', 'bold');
   doc.text("Item Name", marginX, currentY);
-  doc.text("Qty", width / 2 + 0.5, currentY, { align: 'center' });
+  doc.text("Qty", width / 2 - 0.3, currentY, { align: 'center' });
+  doc.text("Price", width / 2 + 0.3, currentY, { align: 'center' });
   doc.text("Total", width - marginX, currentY, { align: 'right' });
   currentY += 0.2;
 
@@ -162,39 +168,62 @@ export const generateReceiptPDF = async (transaction, businessInfo) => {
   doc.setFont('courier', 'normal');
   transaction.items.forEach(item => {
     // Truncate long names
-    const name = item.menuItem.name.length > 18 ? item.menuItem.name.substring(0, 16) + '...' : item.menuItem.name;
+    const name = item.menuItem.name.length > 20 ? item.menuItem.name.substring(0, 18) + '...' : item.menuItem.name;
+    const price = item.menuItem.totalPrice.toFixed(2);
     const itemTotal = (item.menuItem.totalPrice * item.quantity).toFixed(2);
     
     doc.text(name, marginX, currentY);
-    doc.text(String(item.quantity), width / 2 + 0.5, currentY, { align: 'center' });
+    doc.text(String(item.quantity), width / 2 - 0.3, currentY, { align: 'center' });
+    doc.text(price, width / 2 + 0.3, currentY, { align: 'center' });
     doc.text(itemTotal, width - marginX, currentY, { align: 'right' });
     currentY += 0.2;
   });
 
-  currentY += 1;
+  currentY += 0.8;
 
-  // 7. Totals
-  const rightAlignX = width - marginX;
-  const labelAlignX = width / 2 + 0.5; // Start labels past center
+  // 7. Summary Section
+  centerText("-----------------------------------", currentY, 10);
+  currentY += 0.3;
+  
+  // Subtotal
+  doc.setFont('courier', 'normal');
+  doc.setFontSize(10);
+  doc.text("Subtotal", labelAlignX, currentY, { align: 'right' });
+  doc.text(transaction.baseAmount.toFixed(2), rightAlignX, currentY, { align: 'right' });
+  currentY += 0.2;
+
+  // Discount (if any)
+  if (transaction.discountAmount > 0) {
+    doc.text(`Discount (${transaction.discountType || 'PWD/Senior'})`, labelAlignX, currentY, { align: 'right' });
+    doc.text("-" + transaction.discountAmount.toFixed(2), rightAlignX, currentY, { align: 'right' });
+    currentY += 0.2;
+  }
 
   // Service Charge
-  doc.text("Service Charge", labelAlignX, currentY, { align: 'right' });
+  doc.text(`Service Charge (${transaction.type === 'Dine In' ? 'Dine In' : 'Takeout'})`, labelAlignX, currentY, { align: 'right' });
   doc.text(transaction.serviceFee.toFixed(2), rightAlignX, currentY, { align: 'right' });
   currentY += 0.2;
 
   // VAT Amount
-  doc.text("VAT Amount", labelAlignX, currentY, { align: 'right' });
+  doc.text("VAT Amount (12%)", labelAlignX, currentY, { align: 'right' });
   doc.text(transaction.vatPortion.toFixed(2), rightAlignX, currentY, { align: 'right' });
-  currentY += 0.2;
+  currentY += 0.3;
 
   // Grand Total
+  centerText("-----------------------------------", currentY, 10);
+  currentY += 0.2;
   doc.setFont('courier', 'bold');
   doc.setFontSize(12);
   doc.text("Grand Total", labelAlignX, currentY, { align: 'right' });
   doc.text(transaction.totalAmount.toFixed(2), rightAlignX, currentY, { align: 'right' });
   currentY += 0.3;
+  centerText("-----------------------------------", currentY, 10);
+  currentY += 0.3;
 
-  // Cash Received
+  // 8. Payment Section
+  const rightAlignX = width - marginX;
+  const labelAlignX = width / 2 + 0.5; // Start labels past center
+  
   doc.setFont('courier', 'normal');
   doc.setFontSize(10);
   doc.text("Cash Received", labelAlignX, currentY, { align: 'right' });
@@ -205,21 +234,37 @@ export const generateReceiptPDF = async (transaction, businessInfo) => {
   doc.setFont('courier', 'bold');
   doc.text("Change", labelAlignX, currentY, { align: 'right' });
   doc.text(transaction.change !== undefined ? transaction.change.toFixed(2) : "0.00", rightAlignX, currentY, { align: 'right' });
-  currentY += 0.3;
+  currentY += 0.4;
 
-  // 8. Footer Separator
+  // 9. Footer Separator
   doc.setFont('courier', 'normal');
   doc.setFontSize(10);
   centerText("***********************************", currentY, 10);
   currentY += 0.4;
 
-  // 9. Footer Message
-  centerText("Thank you for your visit", currentY, 10);
+  // 10. Footer Messages
+  centerText("Thank you for your visit!", currentY, 10);
+  currentY += 0.2;
+  centerText("Please come again", currentY, 10);
+  currentY += 0.3;
   
-  // 10. Separator Line (Dotted at bottom per original template styling hint if needed, or just blank)
-  // The template ends there.
-
+  // Additional business info
+  centerText("Non-VAT Registered", currentY, 8);
+  currentY += 0.2;
+  centerText("This serves as official receipt", currentY, 8);
+  currentY += 0.3;
+  
+  // 11. Separator Line
+  centerText("***********************************", currentY, 10);
+  currentY += 0.4;
+  
+  // 12. System info
+  doc.setFontSize(8);
+  centerText("POS System v1.0", currentY, 8);
+  currentY += 0.15;
+  centerText("Generated on " + new Date().toLocaleString(), currentY, 8);
+  
   // Save - Naming it to simulate being in an assets folder
-  const filename = `assets/receipts/Receipt-${String(transaction.orderNumber).padStart(2, '0')}.pdf`;
+  const filename = `assets/receipts/Receipt-${String(transaction.orderNumber).padStart(4, '0')}-${new Date().getTime()}.pdf`;
   doc.save(filename);
 };
