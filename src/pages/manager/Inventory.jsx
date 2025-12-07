@@ -790,7 +790,7 @@ const InventoryPage = () => {
                       <div className="w-1/3 flex justify-end">
                         <button
                           onClick={() => handleOpenAutoModal(dish)}
-                          className="border rounded px-3 py-1 text-xs hover:bg-gray-50"
+                          className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-2 text-xs font-medium transition-colors duration-200 shadow-sm hover:shadow-md"
                         >
                           Edit Recipe
                         </button>
