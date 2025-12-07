@@ -119,7 +119,7 @@ const POS = () => {
         let pdfError = false;
         try {
             const businessInfo = await getBusinessInfo();
-            generateReceiptPDF(newTransaction, businessInfo);
+            await generateReceiptPDF(newTransaction, businessInfo);
         } catch (error) {
             console.error("Error generating receipt PDF:", error);
             pdfError = true;
