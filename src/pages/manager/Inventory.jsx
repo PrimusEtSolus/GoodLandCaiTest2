@@ -352,34 +352,34 @@ const InventoryPage = () => {
               <table className="w-full text-left text-sm">
                 <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
                   <tr>
-                    <th className="p-4 font-semibold text-gray-700">Item Name</th>
-                    <th className="p-4 text-center font-semibold text-gray-700">Packs</th>
-                    <th className="p-4 text-center font-semibold text-gray-700">Alert At</th>
-                    <th className="p-4 text-center font-semibold text-gray-700">Amount per Pack</th>
-                    <th className="p-4 text-center font-semibold text-gray-700">Unit Cost</th>
-                    <th className="p-4 font-semibold text-gray-700">Type</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700">Item Name</th>
+                    <th className="px-6 py-4 text-center font-semibold text-gray-700">Packs</th>
+                    <th className="px-6 py-4 text-center font-semibold text-gray-700">Alert At</th>
+                    <th className="px-6 py-4 text-center font-semibold text-gray-700">Amount per Pack</th>
+                    <th className="px-6 py-4 text-center font-semibold text-gray-700">Unit Cost</th>
+                    <th className="px-6 py-4 font-semibold text-gray-700">Type</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredInventory.map((item) => (
                     <tr key={item.id} className="border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors duration-200">
-                      <td className="p-4 font-medium text-gray-800">{item.name}</td>
+                      <td className="px-6 py-4 font-medium text-gray-800">{item.name}</td>
                       <td
-                        className={`p-4 font-semibold text-center ${
+                        className={`px-6 py-4 font-semibold text-center ${
                           item.inStock <= item.lowStockThreshold ? 'text-red-600 bg-red-50 rounded-lg' : ''
                         }`}
                       >
                         {item.inStock}
                       </td>
-                      <td className="p-4 text-center text-gray-500 text-xs">
+                      <td className="px-6 py-4 text-center text-gray-500 text-xs">
                         {item.lowStockThreshold}
                       </td>
-                      <td className="p-4 text-center text-gray-600">
+                      <td className="px-6 py-4 text-center text-gray-600">
                         {item.measurementQty} {item.measurementUnit}
                       </td>
-                      <td className="p-4 text-center font-medium text-gray-800">{item.cost}</td>
-                      <td className="p-4">
-                        <span className="inline-block px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
+                      <td className="px-6 py-4 text-center font-medium text-gray-800">{item.cost}</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-block px-3 py-2 text-xs font-semibold rounded-full bg-gray-100 text-gray-700">
                           {item.type}
                         </span>
                       </td>
@@ -398,25 +398,25 @@ const InventoryPage = () => {
                   <table className="w-full text-left text-sm">
                     <thead className="bg-gradient-to-r from-blue-50 to-blue-100 border-b border-blue-200 text-blue-900">
                       <tr>
-                        <th className="p-4 font-semibold">Item Name</th>
-                        <th className="p-4 text-center font-semibold">Open Amount</th>
-                        <th className="p-4 text-center font-semibold">Status</th>
+                        <th className="px-6 py-4 font-semibold">Item Name</th>
+                        <th className="px-6 py-4 text-center font-semibold">Open Amount</th>
+                        <th className="px-6 py-4 text-center font-semibold">Status</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredKitchenInventory.map((item) => (
                         <tr key={item.id} className="border-b last:border-b-0">
-                          <td className="p-3 font-medium">{item.name}</td>
-                          <td className="p-3 font-semibold text-blue-700 text-center">
+                          <td className="px-6 py-4 font-medium">{item.name}</td>
+                          <td className="px-6 py-4 font-semibold text-blue-700 text-center">
                             {item.openStock} {item.measurementUnit}
                           </td>
-                          <td className="p-3 text-center">
+                          <td className="px-6 py-4 text-center">
                             {item.openStock <= 0 ? (
-                              <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-semibold">
+                              <span className="text-xs bg-red-100 text-red-600 px-3 py-2 rounded-full font-semibold">
                                 Empty
                               </span>
                             ) : (
-                              <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full font-semibold">
+                              <span className="text-xs bg-green-100 text-green-600 px-3 py-2 rounded-full font-semibold">
                                 In Use
                               </span>
                             )}
@@ -434,28 +434,28 @@ const InventoryPage = () => {
                   <table className="w-full text-left text-sm">
                     <thead className="bg-gray-100 border-b">
                       <tr>
-                        <th className="p-3">Item Name</th>
-                        <th className="p-3 text-center">Quantity Deducted</th>
-                        <th className="p-3">Unit</th>
-                        <th className="p-3">Date/Time</th>
+                        <th className="px-6 py-4">Item Name</th>
+                        <th className="px-6 py-4 text-center">Quantity Deducted</th>
+                        <th className="px-6 py-4">Unit</th>
+                        <th className="px-6 py-4">Date/Time</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredUsageLogs.length === 0 ? (
                         <tr>
-                          <td colSpan={4} className="p-4 text-center text-gray-500">
+                          <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
                             No usage logs found.
                           </td>
                         </tr>
                       ) : (
                         filteredUsageLogs.map((log) => (
                           <tr key={log.id} className="border-b last:border-b-0">
-                            <td className="p-3 font-medium">{log.itemName}</td>
-                            <td className="p-3 font-semibold text-red-600 text-center">
+                            <td className="px-6 py-4 font-medium">{log.itemName}</td>
+                            <td className="px-6 py-4 font-semibold text-red-600 text-center">
                               -{log.quantityUsed}
                             </td>
-                            <td className="p-3">{log.unit}</td>
-                            <td className="p-3 text-xs text-gray-600">
+                            <td className="px-6 py-4">{log.unit}</td>
+                            <td className="px-6 py-4 text-xs text-gray-600">
                               {new Date(log.timestamp).toLocaleString()}
                             </td>
                           </tr>
@@ -472,20 +472,20 @@ const InventoryPage = () => {
 
       {activeTab === 'Suppliers' && (
         <div className="relative">
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-6">
             {suppliers.map((sup) => (
               <div
                 key={sup.id}
-                className="w-64 h-40 border rounded-2xl p-4 flex flex-col justify-between bg-white"
+                className="w-72 h-44 border rounded-2xl p-6 flex flex-col justify-between bg-white shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-center font-semibold">{sup.name}</div>
-                <div className="text-xs text-gray-600 break-words">Email: {sup.email}</div>
+                <div className="text-center font-semibold text-lg">{sup.name}</div>
+                <div className="text-sm text-gray-600 break-words">Email: {sup.email}</div>
               </div>
             ))}
 
             <button
               onClick={() => setShowSupplierModal(true)}
-              className="w-16 h-16 rounded-full bg-blue-600 text-white text-3xl flex items-center justify-center self-center"
+              className="w-20 h-20 rounded-full bg-blue-600 text-white text-3xl flex items-center justify-center self-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
             >
               +
             </button>
@@ -494,50 +494,50 @@ const InventoryPage = () => {
       )}
 
       {activeTab === 'Management' && (
-        <div className="flex flex-col w-full pb-10 gap-10">
-          <div className="w-full max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Add Inventory Item</h2>
-            <div className="border rounded-xl p-6 bg-white">
-              <div className="grid grid-cols-2 gap-4 mb-4">
+        <div className="flex flex-col w-full pb-10 gap-12">
+          <div className="w-full max-w-5xl mx-auto">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Add Inventory Item</h2>
+            <div className="border rounded-xl p-8 bg-white shadow-lg">
+              <div className="grid grid-cols-2 gap-6 mb-6">
                 <div className="col-span-2">
-                  <label className="block text-sm font-semibold mb-1">Item Name</label>
+                  <label className="block text-sm font-semibold mb-2">Item Name</label>
                   <input
                     name="name"
                     value={addItemData.name}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded-lg px-4 py-3"
                     placeholder="e.g. Sugar, Flour, Milk"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Cost (Per Pack)</label>
+                  <label className="block text-sm font-semibold mb-2">Cost (Per Pack)</label>
                   <input
                     name="cost"
                     type="number"
                     value={addItemData.cost}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded-lg px-4 py-3"
                     placeholder="e.g. 500"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Stock (Packs)</label>
+                  <label className="block text-sm font-semibold mb-2">Stock (Packs)</label>
                   <input
                     name="stock"
                     type="number"
                     value={addItemData.stock}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded-lg px-4 py-3"
                     placeholder="e.g. 10"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Unit Type</label>
+                  <label className="block text-sm font-semibold mb-2">Unit Type</label>
                   <select
                     name="measurementUnit"
                     value={addItemData.measurementUnit}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2 bg-white"
+                    className="w-full border rounded-lg px-4 py-3 bg-white"
                   >
                     <option value="g">Grams (g)</option>
                     <option value="ml">Milliliters (ml)</option>
@@ -545,18 +545,18 @@ const InventoryPage = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Amount per Pack</label>
+                  <label className="block text-sm font-semibold mb-2">Amount per Pack</label>
                   <input
                     name="measurementQty"
                     type="number"
                     value={addItemData.measurementQty}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded-lg px-4 py-3"
                     placeholder="e.g. 1000"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1 text-red-600">
+                  <label className="block text-sm font-semibold mb-2 text-red-600">
                     Alert Threshold (Packs)
                   </label>
                   <input
@@ -564,17 +564,17 @@ const InventoryPage = () => {
                     type="number"
                     value={addItemData.lowStockThreshold}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2"
+                    className="w-full border rounded-lg px-4 py-3"
                     placeholder="e.g. 5"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-1">Category Type</label>
+                  <label className="block text-sm font-semibold mb-2">Category Type</label>
                   <select
                     name="type"
                     value={addItemData.type}
                     onChange={handleAddItemChange}
-                    className="w-full border rounded p-2 bg-white"
+                    className="w-full border rounded-lg px-4 py-3 bg-white"
                   >
                     <option value="Perishable">Perishables</option>
                     <option value="Non-Perishable">Non-Perishables</option>
@@ -582,16 +582,16 @@ const InventoryPage = () => {
                   </select>
                 </div>
               </div>
-              <div className="flex gap-4 justify-center mt-4">
+              <div className="flex gap-6 justify-center mt-6">
                 <button
                   onClick={handleSaveNewItem}
-                  className="bg-green-700 text-white px-8 py-2 rounded text-sm font-semibold"
+                  className="bg-green-700 text-white px-10 py-3 rounded-lg text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Save
                 </button>
                 <button
                   onClick={handleClearNewItem}
-                  className="bg-red-600 text-white px-8 py-2 rounded text-sm font-semibold"
+                  className="bg-red-600 text-white px-10 py-3 rounded-lg text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   Clear
                 </button>
@@ -599,9 +599,9 @@ const InventoryPage = () => {
             </div>
           </div>
 
-          <div className="w-full max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Edit Inventory Item</h2>
-            <div className="border rounded-xl p-6 bg-white flex flex-col md:flex-row gap-6 h-[450px]">
+          <div className="w-full max-w-5xl mx-auto">
+            <h2 className="text-2xl font-semibold mb-6 text-center">Edit Inventory Item</h2>
+            <div className="border rounded-xl p-8 bg-white shadow-lg flex flex-col md:flex-row gap-8 h-[500px]">
               <div className="w-full md:w-1/2 flex flex-col border-r md:pr-4">
                 {editingItem ? (
                   <div className="flex flex-col h-full overflow-y-auto">

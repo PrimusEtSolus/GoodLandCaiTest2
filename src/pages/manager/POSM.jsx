@@ -100,10 +100,10 @@ const POSM = () => {
                 <button 
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`p-4 rounded-xl border-2 font-bold text-lg transition-all duration-200 ${
+                    className={`p-4 rounded-xl border-2 font-bold text-lg transition-all duration-300 transform hover:scale-105 ${
                         selectedCategory === cat 
-                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-700 shadow-lg transform scale-105' 
-                            : 'bg-white border-gray-300 text-gray-700 hover:border-blue-400 hover:bg-blue-50'
+                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-700 shadow-lg shadow-blue-500/30' 
+                            : 'bg-white border-gray-300 text-gray-700 hover:border-blue-400 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 hover:text-blue-700 hover:shadow-md'
                     }`}
                 >
                     {cat}
@@ -117,16 +117,36 @@ const POSM = () => {
                 <h2 className="text-2xl font-bold mb-4">{selectedCategory}</h2>
                 <div className="flex flex-wrap gap-4">
                     {filteredMenu.map(item => (
-                        <div key={item.id} className="w-40 h-40 border-2 border-gray-600 flex flex-col items-center justify-between p-2 relative bg-white">
-                            <button onClick={() => openEditModal(item)} className="absolute top-1 left-1">📝</button>
-                            <button onClick={() => openDeleteModal(item)} className="absolute top-1 right-1">❌</button>
-                            <div className="mt-6 text-center font-bold">{item.name}</div>
-                            <div className="text-sm">P. {item.totalPrice}</div>
+                        <div 
+                          key={item.id} 
+                          className="w-40 h-40 border-2 border-gray-200 rounded-xl flex flex-col items-center justify-between p-3 relative bg-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                        >
+                            <button 
+                              onClick={() => openEditModal(item)} 
+                              className="absolute top-2 left-2 w-10 h-8 bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex items-center justify-center transition-colors duration-200 shadow-md hover:shadow-lg text-xs font-medium"
+                            >
+                              EDIT
+                            </button>
+                            <button 
+                              onClick={() => openDeleteModal(item)} 
+                              className="absolute top-2 right-2 w-12 h-8 bg-red-500 hover:bg-red-600 text-white rounded-lg flex items-center justify-center transition-colors duration-200 shadow-md hover:shadow-lg text-xs font-medium"
+                            >
+                              DELETE
+                            </button>
+                            <div className="mt-8 text-center font-bold text-gray-800 truncate w-full px-1">{item.name}</div>
+                            <div className="text-sm font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full">
+                              ₱ {item.totalPrice}
+                            </div>
                         </div>
                     ))}
                     {/* Add Button Placeholder */}
                     <div className="w-40 h-40 flex items-center justify-center">
-                         <button onClick={openAddModal} className="w-12 h-12 bg-black rounded-full text-white text-2xl pb-1 flex items-center justify-center">+</button>
+                         <button 
+                           onClick={openAddModal} 
+                           className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 rounded-full text-white text-2xl pb-1 flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+                         >
+                           +
+                         </button>
                     </div>
                 </div>
             </div>
@@ -195,7 +215,7 @@ const POSM = () => {
 
                     <button 
                         onClick={handleSave}
-                        className="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-bold mb-2"
+                        className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-3 rounded-lg font-bold mb-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                         SAVE
                     </button>
@@ -220,8 +240,18 @@ const POSM = () => {
                 <div className="bg-white p-6 rounded-xl w-80 shadow-2xl text-center">
                     <h3 className="font-bold mb-4">Are you sure you want to delete it?</h3>
                     <div className="flex gap-4 justify-center">
-                        <button onClick={handleDelete} className="px-6 py-2 bg-green-800 hover:bg-green-700 text-white rounded font-bold">Yes</button>
-                        <button onClick={() => setShowDeleteModal(false)} className="px-6 py-2 bg-green-800 hover:bg-green-700 text-white rounded font-bold">No</button>
+                        <button 
+                          onClick={handleDelete} 
+                          className="px-6 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300"
+                        >
+                          Yes
+                        </button>
+                        <button 
+                          onClick={() => setShowDeleteModal(false)} 
+                          className="px-6 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-bold shadow-md hover:shadow-lg transition-all duration-300"
+                        >
+                          No
+                        </button>
                     </div>
                 </div>
             </div>

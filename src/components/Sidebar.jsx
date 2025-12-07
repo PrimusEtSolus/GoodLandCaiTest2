@@ -11,17 +11,17 @@ const Sidebar = ({ role }) => {
   };
 
   return (
-    <div className="h-screen w-64 bg-gradient-to-b from-green-600 to-green-700 text-black flex flex-col shadow-2xl fixed left-0 top-0 overflow-y-auto z-10 border-r-4 border-green-800">
-      <div className="p-6 bg-gradient-to-r from-green-500 to-green-600 border-b-4 border-green-800">
+    <div className="h-screen w-64 bg-white/80 backdrop-blur-sm text-slate-700 flex flex-col shadow-sm fixed left-0 top-0 overflow-y-auto z-10 border-r border-slate-200">
+      <div className="p-6 bg-slate-50 border-b border-slate-200">
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center shadow-lg">
-            <span className="text-green-800 font-bold text-xl">G</span>
+          <div className="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center shadow-sm">
+            <span className="text-slate-700 font-bold text-xl">G</span>
           </div>
-          <h1 className="text-2xl font-bold">GoodLand CAI</h1>
+          <h1 className="text-2xl font-bold text-slate-800">GoodLand CAI</h1>
         </div>
         
-        <div className="bg-green-800/30 rounded-lg p-2 text-center">
-          <span className="text-sm font-semibold text-green-100">Manager Panel</span>
+        <div className="bg-slate-100 rounded-lg p-2 text-center">
+          <span className="text-sm font-semibold text-slate-600">Manager Panel</span>
         </div>
       </div>
         
@@ -32,12 +32,12 @@ const Sidebar = ({ role }) => {
                 to="/manager/dashboard" 
                 className={`group relative flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                   location.pathname.includes('dashboard') 
-                    ? 'bg-yellow-400 text-green-900 shadow-lg transform scale-105' 
-                    : 'hover:bg-green-500 hover:text-white'
+                    ? 'bg-slate-800 text-white shadow-md' 
+                    : 'hover:bg-slate-100 text-slate-700'
                 }`}
               >
                 <div className={`w-5 h-5 rounded flex items-center justify-center ${
-                  location.pathname.includes('dashboard') ? 'bg-green-900' : 'bg-green-700'
+                  location.pathname.includes('dashboard') ? 'bg-slate-900' : 'bg-slate-400'
                 }`}>
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
@@ -45,7 +45,7 @@ const Sidebar = ({ role }) => {
                 </div>
                 <span>Dashboard</span>
                 {location.pathname.includes('dashboard') && (
-                  <div className="absolute right-2 w-2 h-2 bg-green-900 rounded-full animate-pulse"></div>
+                  <div className="absolute right-2 w-2 h-2 bg-slate-900 rounded-full"></div>
                 )}
               </Link>
               
@@ -53,12 +53,12 @@ const Sidebar = ({ role }) => {
                 to="/manager/inventory" 
                 className={`group relative flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                   location.pathname.includes('inventory') 
-                    ? 'bg-yellow-400 text-green-900 shadow-lg transform scale-105' 
-                    : 'hover:bg-green-500 hover:text-white'
+                    ? 'bg-slate-800 text-white shadow-md' 
+                    : 'hover:bg-slate-100 text-slate-700'
                 }`}
               >
                 <div className={`w-5 h-5 rounded flex items-center justify-center ${
-                  location.pathname.includes('inventory') ? 'bg-green-900' : 'bg-green-700'
+                  location.pathname.includes('inventory') ? 'bg-slate-900' : 'bg-slate-400'
                 }`}>
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
@@ -66,7 +66,7 @@ const Sidebar = ({ role }) => {
                 </div>
                 <span>Inventory</span>
                 {location.pathname.includes('inventory') && (
-                  <div className="absolute right-2 w-2 h-2 bg-green-900 rounded-full animate-pulse"></div>
+                  <div className="absolute right-2 w-2 h-2 bg-slate-900 rounded-full"></div>
                 )}
               </Link>
               
@@ -74,12 +74,12 @@ const Sidebar = ({ role }) => {
                 to="/manager/posm" 
                 className={`group relative flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
                   location.pathname.includes('posm') 
-                    ? 'bg-yellow-400 text-green-900 shadow-lg transform scale-105' 
-                    : 'hover:bg-green-500 hover:text-white'
+                    ? 'bg-slate-800 text-white shadow-md' 
+                    : 'hover:bg-slate-100 text-slate-700'
                 }`}
               >
                 <div className={`w-5 h-5 rounded flex items-center justify-center ${
-                  location.pathname.includes('posm') ? 'bg-green-900' : 'bg-green-700'
+                  location.pathname.includes('posm') ? 'bg-slate-900' : 'bg-slate-400'
                 }`}>
                   <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"/>
@@ -88,18 +88,17 @@ const Sidebar = ({ role }) => {
                 </div>
                 <span>POSM</span>
                 {location.pathname.includes('posm') && (
-                  <div className="absolute right-2 w-2 h-2 bg-green-900 rounded-full animate-pulse"></div>
+                  <div className="absolute right-2 w-2 h-2 bg-slate-900 rounded-full"></div>
                 )}
               </Link>
             </>
           )}
         </nav>
-      </div>
 
-      <div className="mt-auto p-6 space-y-3 border-t-4 border-green-800 bg-gradient-to-r from-green-600 to-green-700">
+      <div className="mt-auto p-6 space-y-3 border-t border-slate-200 bg-slate-50">
         {/* Manager Button (Interactable but no-op as per instructions) */}
         <button 
-          className="w-full py-3 px-4 bg-yellow-400 text-green-900 border-2 border-yellow-600 rounded-lg font-bold hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-md transform hover:scale-105 flex items-center justify-center gap-2"
+          className="w-full py-2 px-4 bg-slate-200 text-slate-700 border border-slate-300 rounded-lg font-medium hover:bg-slate-300 transition-all duration-200 flex items-center justify-center gap-2"
           onClick={() => {}}
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -112,7 +111,7 @@ const Sidebar = ({ role }) => {
         {/* Logout Button */}
         <button 
           onClick={handleLogout}
-          className="w-full py-3 px-4 bg-red-600 text-white border-2 border-red-800 rounded-lg font-bold hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-md transform hover:scale-105 flex items-center justify-center gap-2"
+          className="w-full py-2 px-4 bg-rose-100 text-rose-700 border border-rose-300 rounded-lg font-medium hover:bg-rose-200 transition-all duration-200 flex items-center justify-center gap-2"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />

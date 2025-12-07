@@ -132,15 +132,15 @@ const POS = () => {
   };
 
   return (
-    <div className="flex h-screen pb-20 bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="flex h-screen pb-20 bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100">
         {/* Left Side: Checkout */}
-        <div className="w-1/3 border-r border-gray-200 bg-white/80 backdrop-blur-sm p-6 flex flex-col shadow-xl">
+        <div className="w-1/3 border-r border-slate-200 bg-white/90 backdrop-blur-sm p-6 flex flex-col shadow-lg">
             <div className="flex justify-between items-center mb-6">
                 <button 
                     onClick={() => navigate('/')}
-                    className="group flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    className="group flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-slate-600 to-slate-700 text-white rounded-lg font-medium hover:from-slate-700 hover:to-slate-800 transition-all duration-300 shadow-sm hover:shadow-md text-sm"
                 >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                     </svg>
                     Log Out
@@ -148,12 +148,12 @@ const POS = () => {
                 <div className="relative">
                     <input 
                         type="text" 
-                        placeholder="Search items..." 
-                        className="w-64 pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 text-lg font-medium bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md"
+                        placeholder="Search..." 
+                        className="w-48 pl-8 pr-3 py-2 border border-slate-300 rounded-lg focus:border-slate-500 focus:ring-2 focus:ring-slate-200 transition-all duration-300 text-sm font-normal bg-white shadow-sm hover:shadow-md focus:shadow-md"
                         value={search}
                         onChange={e => setSearch(e.target.value)}
                     />
-                    <div className="absolute left-3 top-3.5 w-5 h-5 text-gray-400">
+                    <div className="absolute left-2.5 top-2.5 w-4 h-4 text-slate-400">
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
@@ -167,24 +167,24 @@ const POS = () => {
                     <button 
                         key={cat}
                         onClick={() => setCategory(cat)}
-                        className={`group relative px-4 py-2 border rounded-xl text-sm font-semibold transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105 ${
+                        className={`group relative px-4 py-2 border rounded-lg text-sm font-medium transition-all duration-200 ${
                             category === cat 
-                                ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-600 shadow-lg' 
-                                : 'bg-white/80 backdrop-blur-sm hover:bg-white border-gray-200 text-gray-700'
+                                ? 'bg-slate-800 text-white border-slate-800 shadow-md' 
+                                : 'bg-white hover:bg-slate-50 border-slate-300 text-slate-700 hover:text-slate-900'
                         }`}
                     >
                         <span className="relative z-10">{cat}</span>
                         {category === cat && (
-                            <div className="absolute inset-0 bg-blue-400 rounded-xl animate-pulse opacity-20"></div>
+                            <div className="absolute inset-0 bg-slate-800 rounded-lg opacity-5"></div>
                         )}
                     </button>
                 ))}
                 <button 
                     onClick={() => setCategory('All')}
-                    className={`group relative px-4 py-2 border rounded-xl text-sm font-semibold transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-105 ${
+                    className={`group relative px-4 py-2 border rounded-lg text-sm font-medium transition-all duration-200 ${
                         category === 'All' 
-                            ? 'bg-gradient-to-r from-green-500 to-green-600 text-white border-green-600 shadow-lg' 
-                            : 'bg-white/80 backdrop-blur-sm hover:bg-white border-gray-200 text-gray-700'
+                            ? 'bg-emerald-600 text-white border-emerald-600 shadow-md' 
+                            : 'bg-white hover:bg-emerald-50 border-emerald-300 text-emerald-700 hover:text-emerald-900'
                     }`}
                 >
                     <span className="relative z-10">All Items</span>
@@ -195,47 +195,50 @@ const POS = () => {
             </div>
 
             {/* Order Details List */}
-            <div className="flex-1 border border-gray-200 p-4 overflow-y-auto mb-6 rounded-2xl bg-gradient-to-b from-white to-gray-50 shadow-inner">
+            <div className="flex-1 border border-slate-200 p-4 overflow-y-auto mb-6 rounded-xl bg-white shadow-sm">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-center font-bold text-xl text-gray-800">Order Details</h3>
-                    <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                    <h3 className="text-center font-semibold text-lg text-slate-800">Order Details</h3>
+                    <div className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200 shadow-sm">
                         {cart.reduce((sum, item) => sum + item.quantity, 0)} items
                     </div>
                 </div>
                 {cart.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center h-64 text-gray-400">
+                    <div className="flex flex-col items-center justify-center h-64 text-slate-400">
                         <svg className="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                         </svg>
-                        <p className="text-lg font-medium">Cart is empty</p>
-                        <p className="text-sm">Add items from the menu</p>
+                        <p className="text-base font-medium text-slate-500">Cart is empty</p>
+                        <p className="text-sm text-slate-400">Add items from the menu</p>
                     </div>
                 ) : (
                     cart.map(item => (
-                        <div key={item.menuItem.id} className="flex justify-between items-center border border-gray-200 p-3 mb-3 rounded-xl bg-white shadow-sm hover:shadow-md transition-all duration-300">
+                        <div key={item.menuItem.id} className="flex justify-between items-center border border-slate-200 p-3 mb-3 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-200">
                             <div className="flex flex-col">
-                                <span className="font-semibold text-gray-800">{item.menuItem.name}</span>
-                                <span className="text-sm text-gray-600 font-medium">P. {item.menuItem.totalPrice}</span>
+                                <span className="font-medium text-slate-800">{item.menuItem.name}</span>
+                                <span className="text-sm text-slate-600">P. {item.menuItem.totalPrice}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <span className="font-bold text-lg bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-2 py-1 rounded-lg">x{item.quantity}</span>
+                                <span className="font-semibold text-base bg-white text-slate-700 px-2 py-1 rounded-md border border-slate-200">x{item.quantity}</span>
                                 <button 
                                     onClick={() => updateQuantity(item.menuItem.id, 1)} 
-                                    className="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-md flex items-center justify-center font-semibold transform hover:scale-110"
+                                    className="w-8 h-8 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center font-medium text-xs"
+                                    title="Add item"
                                 >
-                                    +
+                                    ADD
                                 </button>
                                 <button 
                                     onClick={() => updateQuantity(item.menuItem.id, -1)} 
-                                    className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-lg hover:from-yellow-600 hover:to-yellow-700 transition-all duration-300 shadow-md flex items-center justify-center font-semibold transform hover:scale-110"
+                                    className="w-8 h-8 bg-amber-500 hover:bg-amber-600 text-white rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center font-medium text-xs"
+                                    title="Remove item"
                                 >
-                                    -
+                                    SUB
                                 </button>
                                 <button 
                                     onClick={() => removeFromCart(item.menuItem.id)} 
-                                    className="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-md flex items-center justify-center font-semibold transform hover:scale-110"
+                                    className="w-8 h-8 bg-rose-500 hover:bg-rose-600 text-white rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md flex items-center justify-center font-medium text-xs"
+                                    title="Delete from cart"
                                 >
-                                    ×
+                                    DEL
                                 </button>
                             </div>
                         </div>
@@ -243,58 +246,60 @@ const POS = () => {
                 )}
             </div>
 
-            <div className="border-t border-gray-200 pt-6 bg-gradient-to-r from-white to-gray-50 rounded-t-2xl">
+            <div className="border-t border-slate-200 pt-6 bg-slate-50 rounded-t-lg">
                 <div className="flex justify-between items-center mb-6">
-                    <span className="text-2xl font-bold text-gray-800">Total:</span>
+                    <span className="text-xl font-semibold text-slate-800">Total:</span>
                     <div className="flex items-center gap-2">
-                        <span className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">P. {totalAmount.toFixed(2)}</span>
-                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
+                        <span className="text-2xl font-semibold text-emerald-600">P. {totalAmount.toFixed(2)}</span>
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                     </div>
                 </div>
                 <button 
                     onClick={() => setShowCheckoutModal(true)}
                     disabled={cart.length === 0}
-                    className="w-full py-4 bg-gradient-to-r from-green-500 to-green-600 text-white border border-green-600 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-base transition-colors duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                    PLACE ORDER
+                    </svg> PLACE ORDER
                 </button>
             </div>
         </div>
 
         {/* Right Side: Menu Grid */}
-        <div className="w-2/3 p-6 bg-gradient-to-br from-white via-blue-50 to-green-50">
+        <div className="w-2/3 p-6 bg-slate-50">
             <div className="mb-4">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Menu Items</h2>
-                <p className="text-gray-600">Click to add items to cart</p>
+                <h2 className="text-xl font-semibold text-slate-800 mb-2">Menu Items</h2>
+                <p className="text-slate-600 text-sm">Click to add items to cart</p>
+            </div>
             <div className="grid grid-cols-3 gap-4 overflow-y-auto h-full pb-24">
                 {filteredMenu.length > 0 ? filteredMenu.map(item => (
                     <div 
                         key={item.id} 
                         onClick={() => addToCart(item)}
-                        className="group bg-white/80 backdrop-blur-sm border border-gray-200 h-40 flex flex-col items-center justify-center p-4 cursor-pointer hover:bg-gradient-to-br hover:from-green-50 hover:to-blue-50 hover:border-green-400 hover:shadow-xl transition-all duration-300 rounded-2xl transform hover:scale-105 relative overflow-hidden"
+                        className="group bg-white border border-slate-200 h-40 flex flex-col items-center justify-center p-4 cursor-pointer hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg transition-all duration-200 rounded-lg relative overflow-hidden"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-br from-green-400/0 to-blue-400/0 group-hover:from-green-400/10 group-hover:to-blue-400/10 transition-all duration-300"></div>
+                        <div className="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+                        
                         <div className="relative z-10 flex flex-col items-center text-center">
-                            <span className="font-semibold text-gray-800 text-lg mb-2">{item.name}</span>
-                            <div className="bg-gradient-to-r from-green-100 to-green-200 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">
+                            <span className="font-medium text-slate-800 text-base mb-2">{item.name}</span>
+                            <div className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">
                                 P. {item.totalPrice}
                             </div>
                         </div>
                         {cart.find(i => i.menuItem.id === item.id) && (
-                            <div className="absolute top-2 right-2 w-6 h-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white text-xs font-semibold animate-bounce shadow-lg">
+                            <div className="absolute top-2 right-2 w-6 h-6 bg-white rounded-full flex items-center justify-center text-slate-800 text-xs font-medium shadow-md border border-slate-200">
                                 {cart.find(i => i.menuItem.id === item.id)?.quantity || 0}
                             </div>
                         )}
                     </div>
                 )) : (
-                    <div className="col-span-3 flex flex-col items-center justify-center py-20 text-gray-400">
+                    <div className="col-span-3 flex flex-col items-center justify-center py-20 text-slate-400">
                         <svg className="w-24 h-24 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.562M15 6.5a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <p className="text-xl font-medium mb-2">No items found</p>
-                        <p className="text-sm">Try adjusting your search or category filter</p>
+                        <p className="text-lg font-medium mb-2 text-slate-500">No items found</p>
+                        <p className="text-sm text-slate-400">Try adjusting your search or category filter</p>
                     </div>
                 )}
             </div>
@@ -303,45 +308,45 @@ const POS = () => {
         {/* Checkout Modal */}
         {showCheckoutModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999] backdrop-blur-sm">
-                {/* ... (rest of the code remains the same) */}
+                <div className="bg-white p-6 rounded-xl w-96 shadow-xl border border-slate-200">
                     <div className="mb-4">
-                        <div className="border-b pb-3 mb-3">
+                        <div className="border-b border-slate-200 pb-3 mb-3">
                             <div className="flex justify-between text-sm mb-1">
-                                <span>Subtotal (VAT-Inclusive):</span>
-                                <span className="font-bold">P. {baseAmount.toFixed(2)}</span>
+                                <span className="font-medium text-slate-600">Subtotal (VAT-Inclusive):</span>
+                                <span className="font-semibold text-slate-800">P. {baseAmount.toFixed(2)}</span>
                             </div>
                             
                             {/* Discount Section */}
                             <div className="mt-3 pt-3 border-t">
-                                <p className="text-sm font-bold mb-2">Discount:</p>
+                                <p className="text-sm font-semibold mb-2 text-slate-800">Discount:</p>
                                 <div className="flex gap-2 mb-2">
                                     <button 
                                         onClick={() => setDiscountType('None')}
-                                        className={`flex-1 py-1 text-xs rounded border border-black font-semibold ${discountType === 'None' ? 'bg-white' : 'bg-gray-300'}`}
+                                        className={`flex-1 py-1 text-xs rounded border border-slate-300 font-medium ${discountType === 'None' ? 'bg-white text-slate-800 border-slate-400' : 'bg-slate-100 text-slate-600'}`}
                                     >
                                         NONE
                                     </button>
                                     <button 
                                         onClick={() => setDiscountType('PWD')}
-                                        className={`flex-1 py-1 text-xs rounded border border-black font-semibold ${discountType === 'PWD' ? 'bg-white' : 'bg-gray-300'}`}
+                                        className={`flex-1 py-1 text-xs rounded border border-slate-300 font-medium ${discountType === 'PWD' ? 'bg-white text-slate-800 border-slate-400' : 'bg-slate-100 text-slate-600'}`}
                                     >
                                         PWD (20%)
                                     </button>
                                     <button 
                                         onClick={() => setDiscountType('Senior')}
-                                        className={`flex-1 py-1 text-xs rounded border border-black font-semibold ${discountType === 'Senior' ? 'bg-white' : 'bg-gray-300'}`}
+                                        className={`flex-1 py-1 text-xs rounded border border-slate-300 font-medium ${discountType === 'Senior' ? 'bg-white text-slate-800 border-slate-400' : 'bg-slate-100 text-slate-600'}`}
                                     >
                                         SENIOR (20%)
                                     </button>
                                 </div>
                                 {hasDiscount && (
-                                    <div className="flex justify-between text-sm text-green-700 font-bold">
+                                    <div className="flex justify-between text-sm text-emerald-600 font-medium">
                                         <span>Discount ({discountType}):</span>
                                         <span>-P. {discountAmount.toFixed(2)}</span>
                                     </div>
                                 )}
                                 {hasDiscount && (
-                                    <div className="flex justify-between text-sm text-green-700 font-bold mt-1">
+                                    <div className="flex justify-between text-sm text-emerald-600 font-medium mt-1">
                                         <span>VAT Exemption:</span>
                                         <span>-P. {vatPortion.toFixed(2)}</span>
                                     </div>
@@ -350,49 +355,49 @@ const POS = () => {
                         </div>
 
                         {/* Amount after discount and VAT exemption */}
-                        <div className="flex justify-between text-sm font-bold mb-2 pb-2 border-b">
-                            <span>Amount:</span>
-                            <span>P. {amountAfterDiscount.toFixed(2)}</span>
+                        <div className="flex justify-between text-sm font-medium mb-2 pb-2 border-b border-slate-200">
+                            <span className="text-slate-600">Amount:</span>
+                            <span className="font-semibold text-slate-800">P. {amountAfterDiscount.toFixed(2)}</span>
                         </div>
 
                         {/* Service Fee */}
                         <div className="flex justify-between text-sm mb-3">
-                            <span>Service Fee ({orderType === 'Dine In' ? 'Dine In: P. 25' : 'Takeout: P. 50'}):</span>
-                            <span className="font-bold">P. {serviceFee.toFixed(2)}</span>
+                            <span className="text-slate-600">Service Fee ({orderType === 'Dine In' ? 'Dine In: P. 25' : 'Takeout: P. 50'}):</span>
+                            <span className="font-semibold text-slate-800">P. {serviceFee.toFixed(2)}</span>
                         </div>
 
                         {/* Total Price */}
-                        <div className="flex justify-between text-lg font-bold mb-2 bg-yellow-100 p-2 rounded">
-                            <span>Total Price:</span>
-                            <span>P. {totalAmount.toFixed(2)}</span>
+                        <div className="flex justify-between text-lg font-semibold mb-2 bg-emerald-50 p-2 rounded-lg border border-emerald-200">
+                            <span className="text-emerald-800">Total Price:</span>
+                            <span className="text-emerald-800">P. {totalAmount.toFixed(2)}</span>
                         </div>
 
                         {/* Payment Input */}
                         <input 
                             type="number"
                             placeholder="Input Amount"
-                            className="w-full p-2 border border-gray-400 rounded mb-2"
+                            className="w-full p-3 border border-slate-300 rounded-lg mb-2 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all duration-200"
                             value={paymentInput}
                             onChange={e => setPaymentInput(e.target.value)}
                         />
 
                         {/* Change */}
-                        <div className="flex justify-between text-lg font-bold mb-4 bg-blue-100 p-2 rounded">
-                            <span>Change:</span>
-                            <span>P. {change >= 0 ? change.toFixed(2) : '---'}</span>
+                        <div className="flex justify-between text-lg font-semibold mb-4 bg-white p-2 rounded-lg border border-slate-200">
+                            <span className="text-slate-700">Change:</span>
+                            <span className="font-semibold text-slate-800">P. {change >= 0 ? change.toFixed(2) : '---'}</span>
                         </div>
                     </div>
                     
                     <div className="flex gap-2 mb-6">
                         <button 
                             onClick={() => setOrderType('Dine In')}
-                            className={`flex-1 py-2 rounded-lg border border-black font-bold ${orderType === 'Dine In' ? 'bg-white' : 'bg-gray-300'}`}
+                            className={`flex-1 py-2 rounded-lg border border-slate-300 font-medium ${orderType === 'Dine In' ? 'bg-white text-slate-800 border-slate-400' : 'bg-slate-100 text-slate-600'}`}
                         >
                             DINE IN
                         </button>
                         <button 
                             onClick={() => setOrderType('Takeout')}
-                            className={`flex-1 py-2 rounded-lg border border-black font-bold ${orderType === 'Takeout' ? 'bg-white' : 'bg-gray-300'}`}
+                            className={`flex-1 py-2 rounded-lg border border-slate-300 font-medium ${orderType === 'Takeout' ? 'bg-white text-slate-800 border-slate-400' : 'bg-slate-100 text-slate-600'}`}
                         >
                             TAKEOUT
                         </button>
@@ -402,13 +407,13 @@ const POS = () => {
                         <button 
                             onClick={handlePlaceOrder}
                             disabled={change < 0 || !paymentInput}
-                            className="w-full py-2 bg-white border border-black rounded-lg font-bold hover:bg-green-100 disabled:opacity-50"
+                            className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             CONFIRM
                         </button>
                         <button 
                             onClick={() => setShowCheckoutModal(false)}
-                            className="w-full py-1 text-sm underline text-red-600"
+                            className="w-full py-1 text-sm underline text-slate-500 hover:text-slate-700 transition-colors duration-200"
                         >
                             Cancel
                         </button>
