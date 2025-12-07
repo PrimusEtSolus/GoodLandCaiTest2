@@ -287,19 +287,19 @@ const POS = () => {
                 <h2 className="text-xl font-semibold text-slate-800 mb-2">Menu Items</h2>
                 <p className="text-slate-600 text-sm">Click to add items to cart</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto h-full pb-24">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 overflow-y-auto h-full pb-24">
 
                 {filteredMenu.length > 0 ? filteredMenu.map(item => (
                     <div 
                         key={item.id} 
                         onClick={() => addToCart(item)}
-                        className="group bg-white border border-slate-200 h-40 flex flex-col items-center justify-center p-4 cursor-pointer hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg transition-all duration-200 rounded-lg relative overflow-hidden"
+                        className="group bg-white border border-slate-200 h-28 flex flex-col items-center justify-center p-3 cursor-pointer hover:bg-slate-50 hover:border-slate-300 hover:shadow-lg transition-all duration-200 rounded-lg relative overflow-hidden"
                     >
                         <div className="absolute inset-0 bg-slate-50 opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                         
                         <div className="relative z-10 flex flex-col items-center text-center">
-                            <span className="font-medium text-slate-800 text-base mb-2">{item.name}</span>
-                            <div className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">
+                            <span className="font-medium text-slate-800 text-sm mb-1">{item.name}</span>
+                            <div className="bg-white text-slate-700 px-2 py-0.5 rounded-full text-xs font-medium border border-slate-200">
                                 ₱ {item.totalPrice}
                             </div>
                         </div>
