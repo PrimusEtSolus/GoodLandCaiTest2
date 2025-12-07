@@ -88,16 +88,23 @@ const POSM = () => {
   };
 
   return (
-    <div className="p-8 bg-white min-h-screen">
-        <h1 className="text-3xl font-bold mb-8">POS Management</h1>
+    <div className="p-8 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
+        <div className="mb-8">
+            <h1 className="text-4xl font-bold text-gray-800 mb-2">POS Management</h1>
+            <p className="text-gray-600">Manage your menu items and pricing</p>
+        </div>
 
         {/* Categories */}
-        <div className="grid grid-cols-2 gap-4 max-w-2xl mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mb-8">
             {categories.map(cat => (
                 <button 
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`p-4 rounded-xl border-2 border-gray-400 font-bold text-lg bg-yellow-100 hover:bg-yellow-200 ${selectedCategory === cat ? 'ring-2 ring-black' : ''}`}
+                    className={`p-4 rounded-xl border-2 font-bold text-lg transition-all duration-200 ${
+                        selectedCategory === cat 
+                            ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-blue-700 shadow-lg transform scale-105' 
+                            : 'bg-white border-gray-300 text-gray-700 hover:border-blue-400 hover:bg-blue-50'
+                    }`}
                 >
                     {cat}
                 </button>
