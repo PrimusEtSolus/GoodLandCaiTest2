@@ -287,7 +287,7 @@ const POS = () => {
                 <h2 className="text-xl font-semibold text-slate-800 mb-2">Menu Items</h2>
                 <p className="text-slate-600 text-sm">Click to add items to cart</p>
             </div>
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 overflow-y-auto h-full pb-24">
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 overflow-y-auto h-full pb-24">
 
                 {filteredMenu.length > 0 ? filteredMenu.map(item => (
                     <div 
