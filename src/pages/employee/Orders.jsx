@@ -69,7 +69,7 @@ const Orders = () => {
                                     <span className="font-medium text-gray-700">{item.menuItem.name}</span>
                                     <div className="flex items-center gap-2">
                                         <span className="bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 px-2 py-1 rounded text-xs font-semibold">x{item.quantity}</span>
-                                        <span className="font-semibold text-gray-800">P. {(item.menuItem.totalPrice * item.quantity).toFixed(2)}</span>
+                                        <span className="font-semibold text-gray-800">₱ {(item.menuItem.totalPrice * item.quantity).toFixed(2)}</span>
                                     </div>
                                 </div>
                             ))}
@@ -80,27 +80,27 @@ const Orders = () => {
                         <div className="space-y-2">
                             <div className="flex justify-between text-gray-600">
                                 <span>Subtotal:</span>
-                                <span className="font-semibold">P. {order.baseAmount?.toFixed(2) || order.totalAmount.toFixed(2)}</span>
+                                <span className="font-semibold">₱ {order.baseAmount?.toFixed(2) || order.totalAmount.toFixed(2)}</span>
                             </div>
                             
                             {order.discountAmount > 0 && (
                                 <div className="flex justify-between text-green-700 font-semibold bg-gradient-to-r from-green-50 to-green-100 p-2 rounded-lg border border-green-200">
                                     <span>{order.discountType} Discount:</span>
-                                    <span>-P. {order.discountAmount?.toFixed(2)}</span>
+                                    <span>-₱ {order.discountAmount?.toFixed(2)}</span>
                                 </div>
                             )}
                             
                             {order.discountAmount > 0 && order.vatPortion !== undefined && (
                                 <div className="flex justify-between text-green-700 font-semibold bg-gradient-to-r from-green-50 to-green-100 p-2 rounded-lg border border-green-200">
                                     <span>VAT Exemption:</span>
-                                    <span>-P. {order.vatPortion.toFixed(2)}</span>
+                                    <span>-₱ {order.vatPortion.toFixed(2)}</span>
                                 </div>
                             )}
                             
                             {order.serviceFee !== undefined && (
                                 <div className="flex justify-between text-gray-600">
                                     <span>Service Fee:</span>
-                                    <span className="font-semibold">P. {order.serviceFee.toFixed(2)}</span>
+                                    <span className="font-semibold">₱ {order.serviceFee.toFixed(2)}</span>
                                 </div>
                             )}
                         </div>
@@ -108,20 +108,20 @@ const Orders = () => {
 
                     <div className="border-t border-gray-200 my-3 pt-3 flex justify-between font-bold text-lg bg-gradient-to-r from-gray-50 to-gray-100 p-3 rounded-xl">
                         <span className="text-gray-700">Total:</span>
-                        <span className="text-xl bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">P. {typeof order.totalAmount === 'object' ? order.baseAmount.toFixed(2) : order.totalAmount.toFixed(2)}</span>
+                        <span className="text-xl bg-gradient-to-r from-green-600 to-green-700 bg-clip-text text-transparent">₱ {typeof order.totalAmount === 'object' ? order.baseAmount.toFixed(2) : order.totalAmount.toFixed(2)}</span>
                     </div>
 
                     <div className="border-t border-gray-200 my-3 pt-3 text-xs space-y-2">
                         {order.cashProvided !== undefined && (
                             <div className="flex justify-between bg-gradient-to-r from-blue-50 to-blue-100 p-2 rounded-lg border border-blue-200">
                                 <span className="text-blue-700 font-medium">Cash Received:</span>
-                                <span className="font-semibold text-blue-800">P. {order.cashProvided.toFixed(2)}</span>
+                                <span className="font-semibold text-blue-800">₱ {order.cashProvided.toFixed(2)}</span>
                             </div>
                         )}
                         {order.change !== undefined && (
                             <div className="flex justify-between bg-gradient-to-r from-green-50 to-green-100 p-2 rounded-lg border border-green-200">
                                 <span className="text-green-700 font-medium">Change:</span>
-                                <span className="font-semibold text-green-800">P. {order.change.toFixed(2)}</span>
+                                <span className="font-semibold text-green-800">₱ {order.change.toFixed(2)}</span>
                             </div>
                         )}
                     </div>

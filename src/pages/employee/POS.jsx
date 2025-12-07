@@ -215,7 +215,7 @@ const POS = () => {
                         <div key={item.menuItem.id} className="flex justify-between items-center border border-slate-200 p-3 mb-3 rounded-lg bg-white shadow-sm hover:shadow-md transition-all duration-200">
                             <div className="flex flex-col">
                                 <span className="font-medium text-slate-800">{item.menuItem.name}</span>
-                                <span className="text-sm text-slate-600">P. {item.menuItem.totalPrice}</span>
+                                <span className="text-sm text-slate-600">₱ {item.menuItem.totalPrice}</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <span className="font-semibold text-base bg-white text-slate-700 px-2 py-1 rounded-md border border-slate-200">x{item.quantity}</span>
@@ -250,7 +250,7 @@ const POS = () => {
                 <div className="flex justify-between items-center mb-6">
                     <span className="text-xl font-semibold text-slate-800">Total:</span>
                     <div className="flex items-center gap-2">
-                        <span className="text-2xl font-semibold text-emerald-600">P. {totalAmount.toFixed(2)}</span>
+                        <span className="text-2xl font-semibold text-emerald-600">₱ {totalAmount.toFixed(2)}</span>
                         <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                     </div>
                 </div>
@@ -272,7 +272,8 @@ const POS = () => {
                 <h2 className="text-xl font-semibold text-slate-800 mb-2">Menu Items</h2>
                 <p className="text-slate-600 text-sm">Click to add items to cart</p>
             </div>
-            <div className="grid grid-cols-3 gap-4 overflow-y-auto h-full pb-24">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto h-full pb-24">
+
                 {filteredMenu.length > 0 ? filteredMenu.map(item => (
                     <div 
                         key={item.id} 
@@ -284,7 +285,7 @@ const POS = () => {
                         <div className="relative z-10 flex flex-col items-center text-center">
                             <span className="font-medium text-slate-800 text-base mb-2">{item.name}</span>
                             <div className="bg-white text-slate-700 px-3 py-1 rounded-full text-sm font-medium border border-slate-200">
-                                P. {item.totalPrice}
+                                ₱ {item.totalPrice}
                             </div>
                         </div>
                         {cart.find(i => i.menuItem.id === item.id) && (
@@ -313,7 +314,7 @@ const POS = () => {
                         <div className="border-b border-slate-200 pb-3 mb-3">
                             <div className="flex justify-between text-sm mb-1">
                                 <span className="font-medium text-slate-600">Subtotal (VAT-Inclusive):</span>
-                                <span className="font-semibold text-slate-800">P. {baseAmount.toFixed(2)}</span>
+                                <span className="font-semibold text-slate-800">₱ {baseAmount.toFixed(2)}</span>
                             </div>
                             
                             {/* Discount Section */}
@@ -342,13 +343,13 @@ const POS = () => {
                                 {hasDiscount && (
                                     <div className="flex justify-between text-sm text-emerald-600 font-medium">
                                         <span>Discount ({discountType}):</span>
-                                        <span>-P. {discountAmount.toFixed(2)}</span>
+                                        <span>-₱ {discountAmount.toFixed(2)}</span>
                                     </div>
                                 )}
                                 {hasDiscount && (
                                     <div className="flex justify-between text-sm text-emerald-600 font-medium mt-1">
                                         <span>VAT Exemption:</span>
-                                        <span>-P. {vatPortion.toFixed(2)}</span>
+                                        <span>-₱ {vatPortion.toFixed(2)}</span>
                                     </div>
                                 )}
                             </div>
@@ -357,19 +358,19 @@ const POS = () => {
                         {/* Amount after discount and VAT exemption */}
                         <div className="flex justify-between text-sm font-medium mb-2 pb-2 border-b border-slate-200">
                             <span className="text-slate-600">Amount:</span>
-                            <span className="font-semibold text-slate-800">P. {amountAfterDiscount.toFixed(2)}</span>
+                            <span className="font-semibold text-slate-800">₱ {amountAfterDiscount.toFixed(2)}</span>
                         </div>
 
                         {/* Service Fee */}
                         <div className="flex justify-between text-sm mb-3">
-                            <span className="text-slate-600">Service Fee ({orderType === 'Dine In' ? 'Dine In: P. 25' : 'Takeout: P. 50'}):</span>
-                            <span className="font-semibold text-slate-800">P. {serviceFee.toFixed(2)}</span>
+                            <span className="text-slate-600">Service Fee ({orderType === 'Dine In' ? 'Dine In: ₱ 25' : 'Takeout: ₱ 50'}):</span>
+                            <span className="font-semibold text-slate-800">₱ {serviceFee.toFixed(2)}</span>
                         </div>
 
                         {/* Total Price */}
                         <div className="flex justify-between text-lg font-semibold mb-2 bg-emerald-50 p-2 rounded-lg border border-emerald-200">
                             <span className="text-emerald-800">Total Price:</span>
-                            <span className="text-emerald-800">P. {totalAmount.toFixed(2)}</span>
+                            <span className="text-emerald-800">₱ {totalAmount.toFixed(2)}</span>
                         </div>
 
                         {/* Payment Input */}
@@ -384,7 +385,7 @@ const POS = () => {
                         {/* Change */}
                         <div className="flex justify-between text-lg font-semibold mb-4 bg-white p-2 rounded-lg border border-slate-200">
                             <span className="text-slate-700">Change:</span>
-                            <span className="font-semibold text-slate-800">P. {change >= 0 ? change.toFixed(2) : '---'}</span>
+                            <span className="font-semibold text-slate-800">₱ {change >= 0 ? change.toFixed(2) : '---'}</span>
                         </div>
                     </div>
                     
